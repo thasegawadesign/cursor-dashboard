@@ -25,6 +25,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Cursor Dashboard',
   description: 'マウスカーソルのライブメトリクスとセッション可視化',
+  verification: {
+    google: process.env.GOOGLE_VERIFICATION_ID,
+  },
 };
 
 export default function RootLayout({
