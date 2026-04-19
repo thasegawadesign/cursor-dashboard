@@ -11,7 +11,9 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "typecheck": "tsc --noEmit",
-    "check": "oxfmt --check . && oxlint . && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "oxfmt --check . && oxlint . && tsc --noEmit && vitest run",
     "check:fix": "oxfmt --write . && oxlint --fix .",
     "prepare": "lefthook install"
   },
@@ -33,7 +35,8 @@
     "oxfmt": "^0.45.0",
     "oxlint": "^1.60.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.4"
   },
   "packageManager": "pnpm@10.24.0"
 }
