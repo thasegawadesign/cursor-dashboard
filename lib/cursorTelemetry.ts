@@ -6,12 +6,7 @@ export const IDLE_SPEED = 0.12;
 export const SLOW_MAX = 3.5;
 export const FAST_MIN = 16;
 
-export function quadrant(
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-): QuadrantLabel {
+export function quadrant(x: number, y: number, w: number, h: number): QuadrantLabel {
   const cx = w / 2;
   const cy = h / 2;
   const left = x < cx;

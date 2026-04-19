@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useTheme } from 'next-themes';
-import { useSyncExternalStore } from 'react';
+import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
 
 function useIsClient() {
   return useSyncExternalStore(
@@ -24,21 +24,21 @@ export function ThemeToggle() {
     );
   }
 
-  const isDark = resolvedTheme === 'dark';
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       className="flex h-9 shrink-0 items-center gap-2 rounded-lg border border-zinc-200/80 bg-white/90 px-3 font-mono text-[11px] text-zinc-600 shadow-sm transition hover:bg-zinc-50 dark:border-white/10 dark:bg-white/3 dark:text-zinc-300 dark:shadow-none dark:hover:bg-white/6"
-      aria-label={isDark ? 'ライトモードに切り替え' : 'ダークモードに切り替え'}
+      aria-label={isDark ? "ライトモードに切り替え" : "ダークモードに切り替え"}
     >
       {isDark ? (
         <SunIcon className="size-3.5 text-amber-300" />
       ) : (
         <MoonIcon className="size-3.5 text-slate-600" />
       )}
-      <span className="tabular-nums">{isDark ? 'Dark' : 'Light'}</span>
+      <span className="tabular-nums">{isDark ? "Dark" : "Light"}</span>
     </button>
   );
 }
@@ -72,10 +72,7 @@ function MoonIcon({ className }: { className?: string }) {
       strokeWidth="1.75"
       aria-hidden
     >
-      <path
-        d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-        strokeLinejoin="round"
-      />
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" strokeLinejoin="round" />
     </svg>
   );
 }
