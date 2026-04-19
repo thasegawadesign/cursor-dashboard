@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import type { TrailPoint } from "@/hooks/useCursorTelemetry";
+import { useEffect, useRef, useState } from "react";
 
 const TRAIL_MS = 5000;
 

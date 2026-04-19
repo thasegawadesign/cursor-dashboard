@@ -46,7 +46,9 @@ export function SessionInfo({
           key={row.k}
           className="flex items-baseline justify-between gap-3 border-b border-zinc-200/80 pb-2 dark:border-white/5"
         >
-          <dt className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">{row.k}</dt>
+          <dt className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">
+            {row.k}
+          </dt>
           <dd className="font-mono text-sm text-zinc-900 dark:text-zinc-100">{row.v}</dd>
         </div>
       ))}

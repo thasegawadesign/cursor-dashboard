@@ -34,20 +34,24 @@ pnpm dev
 
 ## その他のスクリプト
 
-| コマンド      | 説明              |
-| ------------- | ----------------- |
-| `pnpm build`  | 本番用ビルド      |
-| `pnpm start`  | ビルド後の起動    |
-| `pnpm lint`   | ESLint            |
+| コマンド            | 説明                             |
+| ------------------- | -------------------------------- |
+| `pnpm build`        | 本番用ビルド                     |
+| `pnpm start`        | ビルド後の起動                   |
+| `pnpm lint`         | oxlint                           |
+| `pnpm format`       | oxfmt（コード整形）              |
+| `pnpm typecheck`    | TypeScript 型チェック            |
+| `pnpm format:check` | oxfmt（整形チェックのみ）        |
+| `pnpm check`        | 整形チェック・oxlint・型チェック |
 
 ## プロジェクト構成（抜粋）
 
-| パス | 役割 |
-| ---- | ---- |
-| `app/page.tsx` | トップページ（ダッシュボードをマウント） |
-| `app/components/CursorDashboard.tsx` | メインレイアウトとパネル構成 |
-| `hooks/useCursorTelemetry.ts` | ポインタの購読と `requestAnimationFrame` による集計 |
-| `lib/cursorTelemetry.ts` | 象限・ヒートマップセル・速度しきい値などの純関数 |
+| パス                                 | 役割                                                |
+| ------------------------------------ | --------------------------------------------------- |
+| `app/page.tsx`                       | トップページ（ダッシュボードをマウント）            |
+| `app/components/CursorDashboard.tsx` | メインレイアウトとパネル構成                        |
+| `hooks/useCursorTelemetry.ts`        | ポインタの購読と `requestAnimationFrame` による集計 |
+| `lib/cursorTelemetry.ts`             | 象限・ヒートマップセル・速度しきい値などの純関数    |
 
 ## 技術スタック
 

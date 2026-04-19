@@ -31,7 +31,9 @@ function Bar({
   return (
     <div>
       <div className="mb-1 flex items-end justify-between gap-2">
-        <span className="font-mono text-xs font-medium tracking-wide text-zinc-700 dark:text-zinc-300">{label}</span>
+        <span className="font-mono text-xs font-medium tracking-wide text-zinc-700 dark:text-zinc-300">
+          {label}
+        </span>
         <span className="font-mono text-[11px] text-zinc-500">{hint}</span>
       </div>
       <div className="h-2.5 overflow-hidden rounded-full bg-zinc-200 ring-1 ring-zinc-300/60 dark:bg-zinc-800/90 dark:ring-white/5">
@@ -40,7 +42,9 @@ function Bar({
           style={{ width: `${width}%` }}
         />
       </div>
-      <p className="mt-1 text-right font-mono text-[11px] text-zinc-600 dark:text-zinc-400">{width.toFixed(1)}%</p>
+      <p className="mt-1 text-right font-mono text-[11px] text-zinc-600 dark:text-zinc-400">
+        {width.toFixed(1)}%
+      </p>
     </div>
   );
 }

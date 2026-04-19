@@ -2,12 +2,18 @@
   "name": "cursor-dashboard",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@10.24.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "typecheck": "tsc --noEmit",
+    "check": "oxfmt --check . && oxlint . && tsc --noEmit",
+    "check:fix": "oxfmt --write . && oxlint --fix .",
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@next/third-parties": "16.2.4",
@@ -23,9 +29,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.4",
+    "lefthook": "^2.1.6",
+    "oxfmt": "^0.45.0",
+    "oxlint": "^1.60.0",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "packageManager": "pnpm@10.24.0"
 }

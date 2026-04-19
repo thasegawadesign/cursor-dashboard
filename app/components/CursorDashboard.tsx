@@ -1,6 +1,5 @@
 "use client";
 
-import { useCursorTelemetry } from "@/hooks/useCursorTelemetry";
 import { HeatmapCanvas } from "@/components/HeatmapCanvas";
 import { MetricsStrip } from "@/components/MetricsStrip";
 import { MoveTrailCanvas } from "@/components/MoveTrailCanvas";
@@ -9,6 +8,7 @@ import { SessionInfo } from "@/components/SessionInfo";
 import { SpeedBreakdown } from "@/components/SpeedBreakdown";
 import { SpeedWaveform } from "@/components/SpeedWaveform";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useCursorTelemetry } from "@/hooks/useCursorTelemetry";
 
 export function CursorDashboard() {
   const t = useCursorTelemetry();
@@ -64,7 +64,11 @@ export function CursorDashboard() {
             <MoveTrailCanvas trail={t.trail} viewportW={t.viewportW} viewportH={t.viewportH} />
           </Panel>
 
-          <Panel title="Speed history" subtitle="px / frame · 直近サンプル" className="lg:col-span-7 min-h-[220px]">
+          <Panel
+            title="Speed history"
+            subtitle="px / frame · 直近サンプル"
+            className="lg:col-span-7 min-h-[220px]"
+          >
             <SpeedWaveform samples={t.speedHistory} />
           </Panel>
 
@@ -80,11 +84,19 @@ export function CursorDashboard() {
             />
           </Panel>
 
-          <Panel title="Speed breakdown" subtitle="フレーム加重の割合" className="lg:col-span-6 min-h-[200px]">
+          <Panel
+            title="Speed breakdown"
+            subtitle="フレーム加重の割合"
+            className="lg:col-span-6 min-h-[200px]"
+          >
             <SpeedBreakdown slow={t.slowPct} mid={t.midPct} fast={t.fastPct} />
           </Panel>
 
-          <Panel title="Cursor heatmap" subtitle="滞在密度 · 画面正規化グリッド" className="lg:col-span-12 min-h-[240px]">
+          <Panel
+            title="Cursor heatmap"
+            subtitle="滞在密度 · 画面正規化グリッド"
+            className="lg:col-span-12 min-h-[240px]"
+          >
             <HeatmapCanvas cells={t.heatCells} cols={t.heatCols} rows={t.heatRows} />
           </Panel>
         </div>
