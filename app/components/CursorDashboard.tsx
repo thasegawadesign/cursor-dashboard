@@ -7,6 +7,7 @@ import { Panel } from "@/components/Panel";
 import { SessionInfo } from "@/components/SessionInfo";
 import { SpeedBreakdown } from "@/components/SpeedBreakdown";
 import { SpeedWaveform } from "@/components/SpeedWaveform";
+import { AmbientMusicToggle } from "@/components/ambient-music-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useCursorTelemetry } from "@/hooks/useCursorTelemetry";
 
@@ -46,6 +47,7 @@ export function CursorDashboard() {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 sm:justify-end">
+            <AmbientMusicToggle />
             <ThemeToggle />
             <div className="rounded-xl border border-zinc-200/90 bg-white/80 px-4 py-2 font-mono text-[11px] text-zinc-600 shadow-sm dark:border-white/10 dark:bg-white/3 dark:text-zinc-400 dark:shadow-none">
               viewport {t.viewportW}×{t.viewportH}
