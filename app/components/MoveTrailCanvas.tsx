@@ -13,12 +13,21 @@ type Props = {
 
 export function MoveTrailCanvas({ trail, viewportW, viewportH }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
-  const [layoutGen, setLayoutGen] = useState(0);
+  const [canvasCssSize, setCanvasCssSize] = useState({ w: 0, h: 0 });
 
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const ro = new ResizeObserver(() => setLayoutGen((n) => n + 1));
+
+    const syncSize = () => {
+      setCanvasCssSize({
+        w: canvas.clientWidth,
+        h: canvas.clientHeight,
+      });
+    };
+
+    syncSize();
+    const ro = new ResizeObserver(syncSize);
     ro.observe(canvas);
     return () => ro.disconnect();
   }, []);
@@ -30,8 +39,9 @@ export function MoveTrailCanvas({ trail, viewportW, viewportH }: Props) {
     if (!ctx) return;
 
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    const cssW = canvas.clientWidth;
-    const cssH = canvas.clientHeight;
+    const cssW = canvasCssSize.w;
+    const cssH = canvasCssSize.h;
+    if (cssW < 1 || cssH < 1) return;
     canvas.width = Math.floor(cssW * dpr);
     canvas.height = Math.floor(cssH * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -74,7 +84,7 @@ export function MoveTrailCanvas({ trail, viewportW, viewportH }: Props) {
     ctx.beginPath();
     ctx.arc(mapX(head.x), mapY(head.y), 3.2, 0, Math.PI * 2);
     ctx.fill();
-  }, [trail, viewportW, viewportH, layoutGen]);
+  }, [trail, viewportW, viewportH, canvasCssSize]);
 
   return (
     <canvas
