@@ -32,7 +32,7 @@ export function CursorDashboard() {
       <div className="pointer-events-none absolute inset-0 block bg-[url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2780%27 height=%2780%27 viewBox=%270 0 80 80%27%3E%3Cg fill=%27none%27 stroke=%27%230f172a%27 stroke-opacity=%270.08%27 stroke-width=%271%27%3E%3Cpath d=%27M0 40h80M40 0v80%27/%3E%3C/g%3E%3C/svg%3E')] opacity-30 dark:hidden" />
       <div className="pointer-events-none absolute inset-0 hidden bg-[url('data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2780%27 height=%2780%27 viewBox=%270 0 80 80%27%3E%3Cg fill=%27none%27 stroke=%27rgba(255,255,255,0.03)%27 stroke-width=%271%27%3E%3Cpath d=%27M0 40h80M40 0v80%27/%3E%3C/g%3E%3C/svg%3E')] opacity-40 dark:block" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-[1400px] flex-col gap-6 px-4 py-8 sm:px-6 lg:px-10">
+      <main className="relative z-10 mx-auto flex min-h-screen max-w-[1400px] flex-col gap-6 px-4 py-8 sm:px-6 lg:px-10">
         <header className="flex flex-col gap-2 border-b border-zinc-200/90 pb-6 dark:border-white/10 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-cyan-700 dark:text-cyan-300/80">
@@ -100,7 +100,7 @@ export function CursorDashboard() {
             <HeatmapCanvas cells={t.heatCells} cols={t.heatCols} rows={t.heatRows} />
           </Panel>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
