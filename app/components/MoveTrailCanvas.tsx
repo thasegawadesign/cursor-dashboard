@@ -79,7 +79,7 @@ export function MoveTrailCanvas({ trail, viewportW, viewportH }: Props) {
   return (
     <canvas
       ref={ref}
-      className="h-full min-h-[160px] w-full rounded-lg bg-[#050608]"
+      className="h-full min-h-[160px] w-full rounded-lg bg-zinc-100 dark:bg-[#050608]"
       aria-label="直近5秒のカーソル軌跡"
     />
   );
