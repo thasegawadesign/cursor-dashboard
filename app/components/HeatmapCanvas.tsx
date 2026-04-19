@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -11,6 +12,7 @@ type Props = {
 export function HeatmapCanvas({ cells, cols, rows }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [layoutGen, setLayoutGen] = useState(0);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = ref.current;
@@ -34,7 +36,8 @@ export function HeatmapCanvas({ cells, cols, rows }: Props) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = "#050608";
+    const isDark = resolvedTheme !== "light";
+    ctx.fillStyle = isDark ? "#050608" : "#f4f4f5";
     ctx.fillRect(0, 0, w, h);
 
     let max = 1;
@@ -61,14 +64,14 @@ export function HeatmapCanvas({ cells, cols, rows }: Props) {
       }
     }
 
-    ctx.strokeStyle = "rgba(255,255,255,0.04)";
+    ctx.strokeStyle = isDark ? "rgba(255,255,255,0.04)" : "rgba(15,23,42,0.08)";
     ctx.strokeRect(0.5, 0.5, w - 1, h - 1);
-  }, [cells, cols, rows, layoutGen]);
+  }, [cells, cols, rows, layoutGen, resolvedTheme]);
 
   return (
     <canvas
       ref={ref}
-      className="h-full min-h-[180px] w-full rounded-lg bg-[#050608]"
+      className="h-full min-h-[180px] w-full rounded-lg bg-zinc-100 dark:bg-[#050608]"
       aria-label="カーソル滞在ヒートマップ"
     />
   );

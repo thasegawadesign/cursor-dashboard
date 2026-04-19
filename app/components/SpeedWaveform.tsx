@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -9,6 +10,7 @@ type Props = {
 export function SpeedWaveform({ samples }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [layoutGen, setLayoutGen] = useState(0);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = ref.current;
@@ -33,6 +35,8 @@ export function SpeedWaveform({ samples }: Props) {
 
     ctx.clearRect(0, 0, w, h);
 
+    const isDark = resolvedTheme !== "light";
+
     const padL = 8;
     const padR = 8;
     const padT = 10;
@@ -40,7 +44,7 @@ export function SpeedWaveform({ samples }: Props) {
     const innerW = w - padL - padR;
     const innerH = h - padT - padB;
 
-    ctx.strokeStyle = "rgba(255,255,255,0.06)";
+    ctx.strokeStyle = isDark ? "rgba(255,255,255,0.06)" : "rgba(15,23,42,0.1)";
     ctx.lineWidth = 1;
     for (let i = 0; i <= 4; i++) {
       const y = padT + (innerH * i) / 4;
@@ -75,18 +79,18 @@ export function SpeedWaveform({ samples }: Props) {
     ctx.lineTo(padL + innerW, padT + innerH);
     ctx.lineTo(padL, padT + innerH);
     ctx.closePath();
-    ctx.fillStyle = "rgba(56, 189, 248, 0.08)";
+    ctx.fillStyle = isDark ? "rgba(56, 189, 248, 0.08)" : "rgba(56, 189, 248, 0.14)";
     ctx.fill();
 
-    ctx.fillStyle = "rgba(161, 161, 170, 0.85)";
+    ctx.fillStyle = isDark ? "rgba(161, 161, 170, 0.85)" : "rgba(63, 63, 70, 0.88)";
     ctx.font = "10px ui-monospace, SFMono-Regular, Menlo, Monaco, monospace";
     ctx.fillText(`${maxV.toFixed(0)} px/f`, padL, h - 4);
-  }, [samples, layoutGen]);
+  }, [samples, layoutGen, resolvedTheme]);
 
   return (
     <canvas
       ref={ref}
-      className="h-full min-h-[140px] w-full rounded-lg bg-[#050608]"
+      className="h-full min-h-[140px] w-full rounded-lg bg-zinc-100 dark:bg-[#050608]"
       aria-label="スピードの波形"
     />
   );

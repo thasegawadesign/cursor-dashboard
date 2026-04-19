@@ -42,9 +42,12 @@ export function SessionInfo({
   return (
     <dl className="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
       {rows.map((row) => (
-        <div key={row.k} className="flex items-baseline justify-between gap-3 border-b border-white/5 pb-2">
+        <div
+          key={row.k}
+          className="flex items-baseline justify-between gap-3 border-b border-zinc-200/80 pb-2 dark:border-white/5"
+        >
           <dt className="text-[11px] font-medium uppercase tracking-wider text-zinc-500">{row.k}</dt>
-          <dd className="font-mono text-sm text-zinc-100">{row.v}</dd>
+          <dd className="font-mono text-sm text-zinc-900 dark:text-zinc-100">{row.v}</dd>
         </div>
       ))}
     </dl>

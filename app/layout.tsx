@@ -1,4 +1,5 @@
 import '@/globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata } from 'next';
 import { JetBrains_Mono, Syne } from 'next/font/google';
@@ -41,10 +42,11 @@ export default function RootLayout({
     <html
       lang="ja"
       className={`${syne.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
         {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

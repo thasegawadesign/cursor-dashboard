@@ -24,12 +24,12 @@ export function MetricsStrip({ x, y, speed, clicks }: Props) {
 function Metric({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${accent} to-[#0a0c10] px-4 py-3`}
+      className={`relative overflow-hidden rounded-xl border border-zinc-200/90 bg-gradient-to-br ${accent} to-zinc-100 px-4 py-3 shadow-sm dark:border-white/10 dark:to-[#0a0c10] dark:shadow-none`}
     >
       <p className="font-[family-name:var(--font-syne)] text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-zinc-500">
         {label}
       </p>
-      <p className="mt-1 font-mono text-lg font-semibold tracking-tight text-zinc-100">{value}</p>
+      <p className="mt-1 font-mono text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">{value}</p>
     </div>
   );
 }
