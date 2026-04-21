@@ -12,6 +12,31 @@ function getGaMeasurementId(): string | undefined {
   return raw;
 }
 
+function toAbsoluteUrl(raw: string): URL | undefined {
+  const value = raw.trim();
+  if (!value) return undefined;
+
+  const withProtocol = /^https?:\/\//i.test(value) ? value : `https://${value}`;
+  try {
+    return new URL(withProtocol);
+  } catch {
+    return undefined;
+  }
+}
+
+function getMetadataBase(): URL | undefined {
+  const direct = process.env.NEXT_PUBLIC_SITE_URL;
+  if (direct) {
+    const parsed = toAbsoluteUrl(direct);
+    if (parsed) return parsed;
+  }
+
+  const vercel = process.env.VERCEL_URL;
+  if (vercel) return toAbsoluteUrl(vercel);
+
+  return undefined;
+}
+
 const syne = Syne({
   variable: "--font-syne",
   subsets: ["latin"],
@@ -24,8 +49,21 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: getMetadataBase(),
   title: "Cursor Dashboard",
   description: "マウスカーソルのライブメトリクスとセッション可視化",
+  openGraph: {
+    title: "Cursor Dashboard",
+    description: "マウスカーソルのライブメトリクスとセッション可視化",
+    type: "website",
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cursor Dashboard",
+    description: "マウスカーソルのライブメトリクスとセッション可視化",
+    images: ["/opengraph-image"],
+  },
   verification: {
     google: process.env.GOOGLE_VERIFICATION_ID,
   },
