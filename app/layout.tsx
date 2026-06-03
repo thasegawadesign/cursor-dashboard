@@ -1,6 +1,7 @@
 import "@/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { JetBrains_Mono, Syne } from "next/font/google";
 
@@ -85,6 +86,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
