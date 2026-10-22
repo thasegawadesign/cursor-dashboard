@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono, Syne } from "next/font/google";
 
 const GA_ID_PATTERN = /^G-[A-Z0-9]+$/i;
+const PRODUCTION_SITE_URL = "https://www.cursor-dashboard.vegetworks.com";
 
 function getGaMeasurementId(): string | undefined {
   const raw = process.env.NEXT_PUBLIC_GA_ID?.trim();
@@ -25,17 +26,21 @@ function toAbsoluteUrl(raw: string): URL | undefined {
   }
 }
 
-function getMetadataBase(): URL | undefined {
+function getMetadataBase(): URL {
   const direct = process.env.NEXT_PUBLIC_SITE_URL;
   if (direct) {
     const parsed = toAbsoluteUrl(direct);
     if (parsed) return parsed;
   }
 
+  // VERCEL_URL は本番でも *.vercel.app になるため、プレビュー時だけ使う
   const vercel = process.env.VERCEL_URL;
-  if (vercel) return toAbsoluteUrl(vercel);
+  if (process.env.VERCEL_ENV === "preview" && vercel) {
+    const parsed = toAbsoluteUrl(vercel);
+    if (parsed) return parsed;
+  }
 
-  return undefined;
+  return new URL(PRODUCTION_SITE_URL);
 }
 
 const syne = Syne({
